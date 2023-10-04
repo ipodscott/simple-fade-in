@@ -1,0 +1,13 @@
+.fixed-container{
+	overflow: hidden;
+	max-height:100vh;
+}
+
+.fade-in-element {
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+.fade-in-element.visible {
+  opacity: 1;
+}

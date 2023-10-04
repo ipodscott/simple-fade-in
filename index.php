@@ -18,7 +18,10 @@ class WP_FadeIn_Plugin {
 
 	public function enqueue_scripts() {
 		// Enqueue your JavaScript
-		wp_enqueue_script( 'custom-scripts', plugin_dir_url( __FILE__ ) . 'fade-script.js', '1.0', true );
+		wp_enqueue_script( 'custom-scripts', plugin_dir_url( __FILE__ ) . 'fade-script.js', array(), '1.0', true );
+
+		// Enqueue your CSS
+		wp_enqueue_style( 'custom-styles', plugin_dir_url( __FILE__ ) . 'fade-style.css', array(), '1.0' );
 
 		// Pass ajax_url to script.js
 		wp_localize_script( 'custom-scripts', 'frontendajax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ));
