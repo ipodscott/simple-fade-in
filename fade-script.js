@@ -20,11 +20,7 @@ window.addEventListener('scroll', function() {
     //topHeader.classList.remove('scrolled');
   }
   
-  if (scrollPosition > 600) {
-    bottomFooter.classList.add('scrolled');
-  } else {
-    bottomFooter.classList.remove('scrolled');
-  }
+
   
 });
 
