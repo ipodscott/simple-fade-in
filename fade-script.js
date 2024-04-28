@@ -8,7 +8,6 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 });
 
-
 window.addEventListener('scroll', function() {
   const topHeader = document.querySelector('.top-header');
   const bottomFooter = document.querySelector('.site-footer-container');
@@ -18,12 +17,8 @@ window.addEventListener('scroll', function() {
     //topHeader.classList.add('scrolled');
   } else {
     //topHeader.classList.remove('scrolled');
-  }
-  
-
-  
+  } 
 });
-
 
 // Helper function to determine if an element is in the viewport
 function isInViewport(element, offset = 0) {
@@ -62,28 +57,42 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-
 window.addEventListener('scroll', function() {
-  const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-  const setOpacity = (selector, value) => {
-  const elements = document.querySelectorAll(selector);
-  elements.forEach(element => {
-    element.style.opacity = value;
-  });
-  };
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
-  setOpacity('.top', 1 - scrollTop / 750);
-  setOpacity('.fadey', 1 - scrollTop / 1200);
+    const setOpacity = (selector, value) => {
+        const elements = document.querySelectorAll(selector);
+        elements.forEach(element => {
+            element.style.opacity = value;
+        });
+    };
 
-  const setMarginTop = (selector, value) => {
-  const elements = document.querySelectorAll(selector);
-  elements.forEach(element => {
-    element.style.marginTop = value;
-  });
-  };
+    const setMarginTop = (selector, value) => {
+        const elements = document.querySelectorAll(selector);
+        elements.forEach(element => {
+            element.style.marginTop = value;
+        });
+    };
 
-  setMarginTop('.move-down', 0 + scrollTop * 0.25 + 'vh');
-  setMarginTop('.move-down.slow', 0 + scrollTop * 0.065 + 'vh')
-  setMarginTop('.move-up', 0 + scrollTop * 0.25 + 'vh');
-  setMarginTop('.move-up.slow', 0 - scrollTop * 0.025 + 'vh');
+    const setScale = (selector, value) => {
+        const elements = document.querySelectorAll(selector);
+        elements.forEach(element => {
+            element.style.transform = `scale(${value})`;
+        });
+    };
+
+    // Example scaling settings
+    // Adjust the base scale and scaling factor as per your design needs
+    const baseScale = 1; // Base scale when scroll position is at the top
+    const imgScalingFactor = 0.0002; // Increment scale by 0.001 per pixel scrolled
+    const divScalingFactor = 0.001; // Increment scale by 0.001 per pixel scrolled
+    setScale('.wp-block-cover.scale img', baseScale + scrollTop * imgScalingFactor);
+    setScale('.scale-up', baseScale + scrollTop * divScalingFactor);
+    setOpacity('.top', 1 - scrollTop / 750);
+    setOpacity('.fadey', 1 - scrollTop / 750);
+    setMarginTop('.wp-block-cover.move-down-img img', 0 + scrollTop * 0.025 + 'vh');
+    setMarginTop('.move-down', 0 + scrollTop * 0.25 + 'vh');
+    setMarginTop('.move-down.slow', 0 + scrollTop * 0.065 + 'vh')
+    setMarginTop('.move-up', 0 + scrollTop * 0.25 + 'vh');
+    setMarginTop('.move-up.slow', 0 - scrollTop * 0.025 + 'vh');
 });
