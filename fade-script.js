@@ -1,3 +1,9 @@
+// Content Fade In
+window.addEventListener('load', function() {
+  var content = document.querySelector('.fade-in-body .wp-site-blocks');
+  content.style.opacity = '1';
+});
+//Parallax background
 document.addEventListener("DOMContentLoaded", function() {
   const wpSiteCover = document.querySelectorAll(".wp-block-cover");
 
@@ -81,18 +87,34 @@ window.addEventListener('scroll', function() {
         });
     };
 
-    // Example scaling settings
-    // Adjust the base scale and scaling factor as per your design needs
-    const baseScale = 1; // Base scale when scroll position is at the top
-    const imgScalingFactor = 0.0002; // Increment scale by 0.001 per pixel scrolled
-    const divScalingFactor = 0.001; // Increment scale by 0.001 per pixel scrolled
-    setScale('.wp-block-cover.scale img', baseScale + scrollTop * imgScalingFactor);
-    setScale('.scale-up', baseScale + scrollTop * divScalingFactor);
-    setOpacity('.top', 1 - scrollTop / 750);
-    setOpacity('.fadey', 1 - scrollTop / 750);
-    setMarginTop('.wp-block-cover.move-down-img img', 0 + scrollTop * 0.025 + 'vh');
-    setMarginTop('.move-down', 0 + scrollTop * 0.25 + 'vh');
-    setMarginTop('.move-down.slow', 0 + scrollTop * 0.065 + 'vh')
-    setMarginTop('.move-up', 0 + scrollTop * 0.25 + 'vh');
-    setMarginTop('.move-up.slow', 0 - scrollTop * 0.025 + 'vh');
+   const setLetterSpacing = (selector, value) => {
+       const elements = document.querySelectorAll(selector);
+       elements.forEach(element => {
+           element.style.letterSpacing = value + 'px'; // set letter-spacing in pixels
+       });
+   };
+   
+   // Letter spacing settings
+   const baseSpacing = 0.25; // Base letter spacing in pixels
+   const spacingIncrement = 0.02; // Increment letter spacing by 0.01px per pixel scrolled
+   setLetterSpacing('.stretch', baseSpacing + scrollTop * spacingIncrement);
+   
+   // Example scaling settings
+   // Adjust the base scale and scaling factor as per your design needs
+   const baseScale = 1; // Base scale when scroll position is at the top
+   const imgScalingFactor = 0.0002; // Increment scale by 0.001 per pixel scrolled
+   const divScalingFactor = 0.001; // Increment scale by 0.001 per pixel scrolled
+   setScale('.wp-block-cover.scale img', baseScale + scrollTop * imgScalingFactor);
+   setScale('.scale-image', baseScale + scrollTop * imgScalingFactor);
+   setScale('.scale-up', baseScale + scrollTop * divScalingFactor);
+   setOpacity('.top', 1 - scrollTop / 750);
+   setOpacity('.fadey', 1 - scrollTop / 750);
+   setOpacity('.fadey-fast', 1 - scrollTop / 400);
+   setMarginTop('.wp-block-cover.move-down-img img', 0 + scrollTop * 0.025 + 'vh');
+   setMarginTop('.move-down', 0 + scrollTop * 0.25 + 'vh');
+   setMarginTop('.move-up', 0 - scrollTop * 0.05 + 'vh');
+   setMarginTop('.move-down.med', 0 + scrollTop * 0.1 + 'vh')
+   setMarginTop('.move-down.slow', 0 + scrollTop * 0.065 + 'vh')
+   //setMarginTop('.move-up', 0 + scrollTop * 0.25 + 'vh');
+   setMarginTop('.move-up.slow', 0 - scrollTop * 0.025 + 'vh');
 });
